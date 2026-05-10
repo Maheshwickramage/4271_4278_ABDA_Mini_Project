@@ -327,20 +327,6 @@ cat reports/daily_traffic_report.csv
 | Spark checkpoints | `data/checkpoints/` |
 | Final report | `reports/daily_traffic_report.csv` |
 
-## How to Demonstrate the Project
-
-For a project presentation or submission video, the following sequence is recommended:
-
-1. Introduce the project scenario and the four Colombo junctions.
-2. Show the project folder structure.
-3. Start the Docker environment using `docker compose up -d`.
-4. Show running containers using `docker compose ps`.
-5. Run the Python producer and explain the generated traffic events.
-6. Start the Spark job and explain the 5-minute window and congestion index calculation.
-7. Open a Kafka consumer on `critical-traffic` and show critical alert messages.
-8. Open the Airflow UI and trigger the reporting DAG.
-9. Display `reports/daily_traffic_report.csv`.
-10. Explain how the recommendation column supports traffic management decisions.
 
 ## Example Interpretation of Results
 
@@ -349,22 +335,8 @@ For a project presentation or submission video, the following sequence is recomm
 - If average speed is very low, the system flags the location as critical
 - The report recommendation helps identify whether traffic police intervention is needed
 
-## Current Design Choice
-
-This project uses Parquet instead of PostgreSQL for storage because:
-
-- it reduces setup complexity
-- it is easier to demonstrate in a classroom environment
-- it still satisfies the requirement for persistent processed data storage
-
-If needed, the storage layer can be extended later to PostgreSQL using Spark JDBC output.
-
 ## Limitations
 
 - The producer uses simulated data rather than real traffic sensor feeds
 - The current reporting DAG is scheduled hourly for demonstration purposes
 - The project runs in a local Docker environment and is not optimized for production scale
-
-## Conclusion
-
-This project demonstrates a complete mini Big Data pipeline for smart city traffic monitoring. It combines streaming ingestion, real-time analytics, alert generation, persistent storage, and scheduled reporting in a single reproducible environment. The implementation is intentionally simple and beginner friendly while still covering the core concepts required in an Applied Big Data Engineering assignment.
